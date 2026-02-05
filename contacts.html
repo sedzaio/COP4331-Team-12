@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <title>COP 4331 SMALL PROJECT DEMO</title>
+    <script type="text/javascript" src="js/code.js"></script>
+    <link href="css/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function () {
+            readCookie();
+        }, false);
+    </script>
+
+</head>
+
+<body>
+
+    <h1 id="title">COP 4331 SMALL PROJECT DEMO</h1>
+
+    <div id="loggedInDiv">
+        <span id="userName"></span><br />
+        <button type="button" id="logoutButton" class="buttons" onclick="doLogout();"> Log Out </button>
+    </div>
+
+    <div id="accessUIDiv">
+        <h2>Search Contacts</h2>
+
+        <label for="searchText">Search by name</label>
+        <input type="text" id="searchText" placeholder="e.g., Rick" />
+        <button type="button" class="buttons" onclick="searchContacts();">Search</button>
+
+        <span id="searchResult" role="status" aria-live="polite"></span>
+
+        <div id="contactsList" aria-label="Search results"></div>
+
+        <hr />
+
+        <h2>Add Contact</h2>
+
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" />
+
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" />
+
+        <label for="phone">Phone</label>
+        <input type="tel" id="phone" />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" />
+
+        <button type="button" class="buttons" onclick="addContact();">Add Contact</button>
+        <span id="addResult" role="status" aria-live="polite"></span>
+    </div>
+
+</body>
+
+</html>
