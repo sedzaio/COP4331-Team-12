@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contacts</title>
+    <script type="text/javascript" src="js/code.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <script>document.addEventListener('DOMContentLoaded', readCookie);</script>
+</head>
+<body>
+    <div id="backgroundImage"></div>
+    <div class="overlay"></div>
+    <div class="box" style="max-width:600px">
+        <h1 id="title">Contact Manager</h1>
+        <div class="line">
+            <span id="userName" style="font-weight:bold"></span>
+            <button class="btn btn-gray" style="width:auto; height:32px; padding:0 15px" onclick="doLogout()">Logout</button>
+        </div>
+        
+        <h2>Search</h2>
+        <div id="searchResult" class="msg"></div>
+        <div class="f-row">
+            <input type="text" id="searchText" class="in" placeholder="Search name..." onkeypress="if(event.key==='Enter')searchContacts()">
+            <div id="searchTextIco" class="err-ico"></div>
+        </div>
+        <button class="btn" onclick="searchContacts()">Search</button>
+        
+        <div id="contactsList" style="margin-top:65px; max-height:200px; overflow-y:auto; clear:both"></div>
+        
+        <h2 style="margin-top:30px; border-top:1px solid #eeeeee; padding-top:15px">Add Contact</h2>
+        <div id="addResult" class="msg"></div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 15px">
+            <div class="f-row">
+                <input type="text" id="firstName" class="in" placeholder="First Name">
+                <div id="firstNameIco" class="err-ico"></div>
+            </div>
+            <div class="f-row">
+                <input type="text" id="lastName" class="in" placeholder="Last Name">
+                <div id="lastNameIco" class="err-ico"></div>
+            </div>
+            <div class="f-row">
+                <input type="tel" id="phone" class="in" placeholder="Phone">
+                <div id="phoneIco" class="err-ico"></div>
+            </div>
+            <div class="f-row">
+                <input type="email" id="email" class="in" placeholder="Email">
+                <div id="emailIco" class="err-ico"></div>
+            </div>
+        </div>
+        <button class="btn" onclick="addContact()">Add Contact</button>
+        <div class="copy">© COP4331 Team 12</div>
+    </div>
+
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <h2 style="margin-top:0">Edit Contact</h2>
+            <label>First Name</label>
+            <input type="text" id="editFirst" class="in">
+            <label>Last Name</label>
+            <input type="text" id="editLast" class="in">
+            <label>Phone</label>
+            <input type="text" id="editPhone" class="in">
+            <label>Email</label>
+            <input type="text" id="editEmail" class="in">
+            
+            <div style="overflow:hidden; margin-top:10px;">
+                <button class="btn" onclick="submitEdit()">Save</button>
+                <button class="btn btn-gray" style="margin-right:10px;" onclick="closeEditModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

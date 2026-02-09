@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Register</title>
+    <script type="text/javascript" src="js/code.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="backgroundImage"></div>
+    <div class="overlay"></div>
+    <div class="box">
+        <h1 id="title">Contact Manager</h1>
+        <div id="regResult" class="msg"></div>
+        <div class="line"><h2>Create Account</h2></div>
+        
+        <label>First Name</label>
+        <div class="f-row">
+            <input type="text" id="regFirstName" class="in" onkeypress="if(event.key==='Enter')doRegister()">
+            <div id="regFirstNameIco" class="err-ico"></div>
+        </div>
+        
+        <label>Last Name</label>
+        <div class="f-row">
+            <input type="text" id="regLastName" class="in" onkeypress="if(event.key==='Enter')doRegister()">
+            <div id="regLastNameIco" class="err-ico"></div>
+        </div>
+        
+        <label>Username</label>
+        <div class="f-row">
+            <input type="text" id="regLogin" class="in" onkeypress="if(event.key==='Enter')doRegister()">
+            <div id="regLoginIco" class="err-ico"></div>
+        </div>
+        
+        <label>Password</label>
+        <div class="f-row">
+            <input type="password" id="regPassword" class="in" onkeypress="if(event.key==='Enter')doRegister()">
+            <div id="regPasswordIco" class="err-ico"></div>
+        </div>
+        
+        <button class="btn" onclick="doRegister()">Register</button>
+        <button class="btn btn-gray" style="margin-right:10px" onclick="window.location.href='index.html'">Back</button>
+        <div class="copy">© COP4331 Team 12</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login</title>
+    <script type="text/javascript" src="js/code.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div id="backgroundImage"></div>
+    <div class="overlay"></div>
+    <div class="box">
+        <h1 id="title">Contact Manager</h1>
+        <div id="loginError" class="msg"></div>
+        <div class="line"><h2>Sign in</h2></div>
+        
+        <label>Username</label>
+        <div class="f-row">
+            <input type="text" id="loginName" class="in" onkeypress="if(event.key==='Enter')doLogin()">
+            <div id="loginNameIco" class="err-ico"></div>
+        </div>
+        
+        <label>Password</label>
+        <div class="f-row">
+            <input type="password" id="loginPassword" class="in" onkeypress="if(event.key==='Enter')doLogin()">
+            <div id="loginPasswordIco" class="err-ico"></div>
+        </div>
+        
+        <button class="btn" onclick="doLogin()">Sign In</button>
+        <p style="margin-top:25px; font-size:14px; clear:both;">
+            New here? <a href="register.html" class="gold-link">Register now</a>
+        </p>
+        <div class="copy">© COP4331 Team 12</div>
+    </div>
+</body>
+</html>
