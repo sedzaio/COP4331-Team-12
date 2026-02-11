@@ -59,14 +59,29 @@ function doRegister() {
 
     let fields = [{el:f}, {el:l}, {el:u}, {el:p}];
     let empty = fields.filter(x => !x.el.value.trim());
+    let passShort = p.value.trim().length < 6;
 
     if (empty.length > 0) {
         empty.forEach(x => {
             x.el.classList.add("bad-in");
             document.getElementById(x.el.id + "Ico").style.display = "block";
         });
+
+        if (passShort && p.value.trim() !== "") {
+             p.classList.add("bad-in");
+             document.getElementById("regPasswordIco").style.display = "block";
+        }
+
         m.style.display = "block"; m.className = "msg error";
         m.innerHTML = "All fields are required!";
+        return;
+    }
+
+    if (passShort) {
+        p.classList.add("bad-in");
+        document.getElementById("regPasswordIco").style.display = "block";
+        m.style.display = "block"; m.className = "msg error";
+        m.innerHTML = "Password must be at least 6 characters.";
         return;
     }
 
@@ -340,3 +355,4 @@ function doLogout() {
     document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     window.location.href = "index.html";
 }
+
