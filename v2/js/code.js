@@ -162,6 +162,29 @@ function addContact() {
         return;
     }
 
+    let phoneErr = false;
+    let emailErr = false;
+
+    if (!/^\+?[0-9]+$/.test(p.value.trim()) || p.value.trim().replace(/[^0-9]/g, "").length < 3) {
+        phoneErr = true;
+        p.classList.add("bad-in");
+        document.getElementById("phoneIco").style.display = "block";
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.value.trim())) {
+        emailErr = true;
+        e.classList.add("bad-in");
+        document.getElementById("emailIco").style.display = "block";
+    }
+
+    if (phoneErr || emailErr) {
+        m.style.display = "block"; m.className = "msg error";
+        if (phoneErr && emailErr) m.innerHTML = "Phone and Email format incorrect.";
+        else if (phoneErr) m.innerHTML = "Phone format incorrect.";
+        else m.innerHTML = "Email format incorrect.";
+        return;
+    }
+
     let newName = f.value;
     let xhr = new XMLHttpRequest();
     xhr.open("POST", urlBase + "/add.php", true);
@@ -193,13 +216,41 @@ function deleteContact(id) {
     xhr.send(JSON.stringify({ id: id }));
 }
 
-// --- MODAL FUNCTIONS ---
+function injectEditIcons() {
+    const ids = ["editFirst", "editLast", "editPhone", "editEmail"];
+    ids.forEach(id => {
+        let el = document.getElementById(id);
+        if (el && !el.parentNode.className.includes("f-row")) {
+            let wrapper = document.createElement("div");
+            wrapper.className = "f-row";
+            el.parentNode.insertBefore(wrapper, el);
+            wrapper.appendChild(el);
+            let ico = document.createElement("div");
+            ico.id = id + "Ico";
+            ico.className = "err-ico";
+            wrapper.appendChild(ico);
+        }
+    });
+}
+
 function openEditModal(id, f, l, p, e) {
     currentEditId = id;
+    injectEditIcons();
+    
     document.getElementById("editFirst").value = f;
     document.getElementById("editLast").value = l;
     document.getElementById("editPhone").value = p;
     document.getElementById("editEmail").value = e;
+    
+    resetUI(["editFirst", "editLast", "editPhone", "editEmail"], "editMsg");
+    
+    if (!document.getElementById("editMsg")) {
+        let m = document.createElement("div");
+        m.id = "editMsg"; m.className = "msg error"; m.style.display = "none";
+        let c = document.querySelector(".modal-content");
+        c.insertBefore(m, c.children[1]); 
+    }
+    
     document.getElementById("editModal").style.display = "block";
 }
 
@@ -208,11 +259,50 @@ function closeEditModal() {
 }
 
 function submitEdit() {
-    let f = document.getElementById("editFirst").value;
-    let l = document.getElementById("editLast").value;
-    let p = document.getElementById("editPhone").value;
-    let e = document.getElementById("editEmail").value;
+    let f = document.getElementById("editFirst");
+    let l = document.getElementById("editLast");
+    let p = document.getElementById("editPhone");
+    let e = document.getElementById("editEmail");
+    let m = document.getElementById("editMsg");
     
+    resetUI(["editFirst", "editLast", "editPhone", "editEmail"], "editMsg");
+
+    let fields = [{el:f}, {el:l}, {el:p}, {el:e}];
+    let empty = fields.filter(x => !x.el.value.trim());
+
+    if (empty.length > 0) {
+        empty.forEach(x => {
+            x.el.classList.add("bad-in");
+            document.getElementById(x.el.id + "Ico").style.display = "block";
+        });
+        m.innerHTML = "All fields are required.";
+        m.style.display = "block";
+        return;
+    }
+
+    let phoneErr = false;
+    let emailErr = false;
+
+    if (!/^\+?[0-9]+$/.test(p.value.trim()) || p.value.trim().replace(/[^0-9]/g, "").length < 3) {
+        phoneErr = true;
+        p.classList.add("bad-in");
+        document.getElementById("editPhoneIco").style.display = "block";
+    }
+
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.value.trim())) {
+        emailErr = true;
+        e.classList.add("bad-in");
+        document.getElementById("editEmailIco").style.display = "block";
+    }
+
+    if (phoneErr || emailErr) {
+        m.style.display = "block";
+        if (phoneErr && emailErr) m.innerHTML = "Phone and Email format incorrect.";
+        else if (phoneErr) m.innerHTML = "Phone format incorrect.";
+        else m.innerHTML = "Email format incorrect.";
+        return;
+    }
+
     let xhr = new XMLHttpRequest();
     xhr.open("POST", urlBase + "/edit.php", true);
     xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
@@ -222,7 +312,7 @@ function submitEdit() {
             searchContacts(); 
         }
     };
-    xhr.send(JSON.stringify({ id: currentEditId, firstName: f, lastName: l, phone: p, email: e }));
+    xhr.send(JSON.stringify({ id: currentEditId, firstName: f.value, lastName: l.value, phone: p.value, email: e.value }));
 }
 
 function saveCookie() {
@@ -249,5 +339,4 @@ function readCookie() {
 function doLogout() {
     document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     window.location.href = "index.html";
-
 }
