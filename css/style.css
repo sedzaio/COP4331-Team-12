@@ -11,7 +11,7 @@ body {
 #backgroundImage {
     position: fixed;
     top: 0; width: 100%; height: 100%;
-    background-image: url("https://aadcdn.msauthimages.net/dbd5a2dd-sbyjrdbw6xyllcludqsag8xlg1-5upfnvkflfi8rnrg/logintenantbranding/0/illustration?ts=637732110149168612");
+    background-image: url("Background.jpg");
     background-size: cover; z-index: -2;
 }
 
@@ -32,7 +32,7 @@ body {
 
 #title {
     color: #000000;
-    background-color: #FFC904;
+    background-color: #04ffff;
     text-align: center;
     padding: 15px;
     margin: -40px -40px 25px -40px;
@@ -74,24 +74,24 @@ label {
     border-bottom: 1px solid #666666; margin-bottom: 20px;
     font-size: 1rem; padding-right: 30px; box-sizing: border-box;
 }
-.in:focus { outline: none; border-bottom: 2px solid #FFC904; }
+.in:focus { outline: none; border-bottom: 2px solid #04ffff; }
 .bad-in { border-bottom: 2px solid #e81123 !important; background-color: #fdecea; }
 
 /* Buttons */
 .btn {
     min-width: 100px; height: 40px; border: none; font-weight: bold; cursor: pointer;
-    background-color: #FFC904; color: #000000; float: right; border-radius: 6px;
+    background-color: #04ffff; color: #000000; float: right; border-radius: 6px;
 }
-.btn:hover { background-color: #D4A800; }
+.btn:hover { background-color: #0AC4E0; }
 
 .btn-gray { background-color: #f0f0f0; color: #333333; }
-.btn-gray:hover { background-color: #FFC904; color: #000000; }
+.btn-gray:hover { background-color: #0AC4E0; color: #000000; }
 
 .btn-del { background-color: #e81123; color: #ffffff; }
 .btn-del:hover { background-color: #a80000; }
 
 .gold-link { color: #000000; font-weight: bold; text-decoration: underline; transition: color 0.2s; }
-.gold-link:hover { color: #D4A800; }
+.gold-link:hover { color: #0AC4E0; }
 
 .msg {
     padding: 10px; margin-bottom: 15px; font-weight: bold; display: none;
@@ -106,7 +106,7 @@ label {
 }
 
 .row {
-    padding: 15px; border-left: 4px solid #FFC904; background: #f9f9f9;
+    padding: 15px; border-left: 4px solid #04ffff; background: #f9f9f9;
     margin-bottom: 10px; border-bottom: 1px solid #eeeeee;
     display: flex; justify-content: space-between; align-items: center;
 }
