@@ -92,9 +92,15 @@ function doRegister() {
         if (this.readyState == 4 && this.status == 200) {
             let res = JSON.parse(this.responseText);
             m.style.display = "block";
-            if (res.error) { m.className = "msg error"; m.innerHTML = res.error; }
+            if (res.error) { 
+                m.className = "msg error"; 
+                m.innerHTML = res.error; 
+                u.classList.add("bad-in");
+                document.getElementById("regLoginIco").style.display = "block";
+            }
             else {
-                m.className = "msg success"; m.innerHTML = "Registration successful! Redirecting...";
+                m.className = "msg success"; 
+                m.innerHTML = "Registration successful! Redirecting...";
                 setTimeout(() => { window.location.href = "index.html"; }, 2000);
             }
         }
