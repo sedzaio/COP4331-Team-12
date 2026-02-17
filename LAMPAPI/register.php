@@ -9,6 +9,21 @@
     } 
     else
     {
+        $checkStmt = $conn->prepare("SELECT ID FROM Users WHERE Login=?");
+        $checkStmt->bind_param("s", $inData["login"]);
+        $checkStmt->execute();
+        $checkResult = $checkStmt->get_result();
+        
+        if ($checkResult->num_rows > 0)
+        {
+            returnWithError("Username already exists. Please choose a different username.");
+            $checkStmt->close();
+            $conn->close();
+            return;
+        }
+        
+        $checkStmt->close();
+        
         $md5pswd = md5($inData["password"]);
 
         $stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Login, Password) VALUES(?,?,?,?)");
@@ -20,7 +35,7 @@
         }
         else
         {
-            returnWithError("Registration Failed: User might already exist");
+            returnWithError("Registration Failed. Please try again.");
         }
 
         $stmt->close();
