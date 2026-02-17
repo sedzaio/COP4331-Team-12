@@ -1,4 +1,4 @@
-const urlBase = 'http://138.68.231.161/LAMPAPI';
+const urlBase = '/LAMPAPI';
 let userId = 0;
 let firstName = "";
 let lastName = "";
@@ -361,4 +361,3 @@ function doLogout() {
     document.cookie = "firstName= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
     window.location.href = "index.html";
 }
-
