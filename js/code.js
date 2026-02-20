@@ -136,12 +136,17 @@ function searchContacts() {
     let s = document.getElementById("searchText");
     let m = document.getElementById("searchResult");
     resetUI(["searchText"], "searchResult");
+    let searchValue = s.value.trim();
 
-    if (!s.value.trim()) {
+    if (!searchValue) {
         s.classList.add("bad-in");
         document.getElementById("searchTextIco").style.display = "block";
         m.innerHTML = "Please type at least one character!";
         m.style.display = "block"; m.className = "msg error"; return;
+    }
+    
+    if (searchValue === "*") {
+        searchValue= "";
     }
 
     let xhr = new XMLHttpRequest();
@@ -159,7 +164,7 @@ function searchContacts() {
             }
         }
     };
-    xhr.send(JSON.stringify({ search: s.value, userId: userId }));
+    xhr.send(JSON.stringify({ search: searchValue, userId: userId }));
 }
 
 function addContact() {
